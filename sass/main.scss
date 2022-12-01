@@ -36,7 +36,7 @@ body {
 }
 
 .info-container {
-	width: 500px;
+	max-width: 500px;
 	margin: 20px auto 0;
 	background-color: $gray;
 	padding: 20px;
@@ -54,7 +54,7 @@ body {
 
 .memory-game-blocks {
 	display: flex;
-	width: 900px;
+	max-width: 900px;
 	flex-wrap: wrap;
 	margin: 20px auto;
 
