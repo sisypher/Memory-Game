@@ -1,4 +1,4 @@
-document.querySelector(".control-buttons").onclick = function () {
+document.getElementById("start-game").onclick = function () {
 	// remove splash screen
 	document.querySelector(".control-buttons").remove();
 };
@@ -10,6 +10,8 @@ let blocksContainer = document.querySelector(".memory-game-blocks");
 let blocks = Array.from(blocksContainer.children);
 
 let orderRange = [...Array(blocks.length).keys()];
+
+let triesElement = document.querySelector(".tries span");
 
 shuffle(orderRange);
 
@@ -32,12 +34,41 @@ blocks.forEach((block, index) => {
 			// Check if Matched
 			checkMatchedBlocks(allFlippedBlocks[0], allFlippedBlocks[1]);
 		}
+
+		// Collect All Matched Blocks
+		let allMatchedBlocks = blocks.filter((matchedBlock) =>
+			matchedBlock.classList.contains("has-match"));
+
+		if (allMatchedBlocks.length === 20) {
+
+			// Reset Game
+			resetGame();
+		}
 	});
 });
 
+
+// Reset Game Function
+function resetGame() {
+	let resetGameScreen = document.querySelector(".reset-game");
+
+	let resetGameButton = document.querySelector(".reset-game span")
+
+	resetGameScreen.style.display = "flex";
+
+	resetGameButton.addEventListener("click", () => {
+		blocks.forEach(block => {
+			block.classList.remove("has-match");
+			block.classList.remove("no-clicking");
+			triesElement.innerHTML = 0;
+		});
+
+		resetGameScreen.style.display = "none";
+	});
+}
+
 // Check Matched Blocks
 function checkMatchedBlocks(firstBlock, secondBlock) {
-	let triesElement = document.querySelector(".tries span");
 
 	if (firstBlock.dataset.item === secondBlock.dataset.item) {
 		// Remove Class is-flipped
@@ -47,6 +78,11 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
 		// Add Class has-match
 		firstBlock.classList.add("has-match");
 		secondBlock.classList.add("has-match");
+
+		// Add Class no-clicking to Matched Blocks
+		firstBlock.classList.add("no-clicking");
+		secondBlock.classList.add("no-clicking");
+
 	} else {
 		// Update The Tries Element
 		triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;

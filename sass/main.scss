@@ -13,6 +13,11 @@ body {
 
 .control-buttons {
 	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+	align-items: center;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -21,10 +26,6 @@ body {
 	background-color: $purple;
 
 	span {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
 		background-color: $gray;
 		color: $purple;
 		padding: 15px 25px;
@@ -36,17 +37,26 @@ body {
 	}
 }
 
-.info-container {
+.reset-game {
+	@extend .control-buttons;
+	display: none;
+}
+
+.basic-container {
 	max-width: 500px;
 	margin: 20px auto 0;
 	background-color: $gray;
 	padding: 20px;
-	font-size: 24px;
 	font-weight: bold;
 	overflow: hidden;
 	border: 5px solid $purple;
 	border-radius: 10px;
 	color: $purple;
+}
+
+.info-container {
+	@extend .basic-container;
+	font-size: 24px;
 
 	.tries {
 		text-align: center;
@@ -107,6 +117,9 @@ body {
 		&.is-flipped,
 		&.has-match {
 			transform: rotateY(180deg);
+		}
+		&.no-clicking {
+			pointer-events: none;
 		}
 	}
 }
