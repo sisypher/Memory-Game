@@ -1,11 +1,17 @@
 $gray: hsl(264, 16%, 88%);
 $purple: hsla(236, 17%, 47%, 0.761);
 
+$card-size: 75px;
+$card-size-bigger-device: 120px;
+$device-bigger: 600px;
+
 * {
 	box-sizing: border-box;
 }
 
 body {
+	height: 100vh;
+	overflow-y: hidden;
 	font-family: "Courier New", Courier, monospace;
 	background-color: $gray;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2364678c' fill-opacity='0.23'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -29,7 +35,11 @@ body {
 		background-color: $gray;
 		color: $purple;
 		padding: 15px 25px;
-		font-size: 30px;
+		font-size: 20px;
+		@media (min-width: $device-bigger ) {
+			padding: 15px 25px;
+			font-size: 30px;
+		}
 		font-weight: bold;
 		white-space: nowrap;
 		border-radius: 5px;
@@ -42,21 +52,17 @@ body {
 	display: none;
 }
 
-.basic-container {
-	max-width: 500px;
+.info-container {
+	max-width: 450px;
 	margin: 20px auto 0;
-	background-color: $gray;
-	padding: 20px;
-	font-weight: bold;
+	padding: 15px 10px;
 	overflow: hidden;
+	background-color: $gray;
+	font-size: 22px;
+	font-weight: bold;
+	color: $purple;
 	border: 5px solid $purple;
 	border-radius: 10px;
-	color: $purple;
-}
-
-.info-container {
-	@extend .basic-container;
-	font-size: 24px;
 
 	.tries {
 		text-align: center;
@@ -64,32 +70,46 @@ body {
 }
 
 .memory-game-blocks {
-	display: flex;
-	max-width: 900px;
-	flex-wrap: wrap;
-	margin: 20px auto;
+	width: 80vw;
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(4 , $card-size);
+	grid-template-rows: repeat(5 , $card-size);
+	@media (min-width: $device-bigger ) {
+		grid-template-columns: repeat(5 , $card-size-bigger-device);
+		grid-template-rows: repeat(5 , $card-size-bigger-device);
+	}
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	margin: 20px auto 0;
 
 	&.no-clicking {
 		pointer-events: none;
 	}
 
 	.game-block {
-		height: 160px;
+		width: 100%;
+		height: 100%;
 		transition: transform 0.5s;
 		transform-style: preserve-3d;
 		cursor: pointer;
-		flex: 1 0 160px;
-		margin: 0 10px 20px;
 
 		.front {
 			background-color: $gray;
-			line-height: 160px;
+			line-height: 70px;
+			@media (min-width: $device-bigger) {
+				line-height: 120px;
+			}
 		}
 
 		.front:before {
 			content: "!";
 			color: $purple;
-			font-size: 140px;
+			font-size: 65px;
+			@media (min-width: $device-bigger) {
+				font-size: 130px;
+			}
 			font-weight: bold;
 		}
 
@@ -98,9 +118,9 @@ body {
 			transform: rotateY(180deg);
 
 			img {
-				width: 120px;
-				height: 120px;
-				margin-top: 15px;
+				width: auto;
+				height: 100%;
+				padding: 10px
 			}
 		}
 
