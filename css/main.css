@@ -46,7 +46,7 @@ body {
 }
 
 .info-container {
-  max-width: 450px;
+  width: 351px;
   margin: 20px auto 0;
   padding: 15px 10px;
   overflow: hidden;
@@ -56,6 +56,11 @@ body {
   color: hsla(236deg, 17%, 47%, 0.761);
   border: 5px solid hsla(236deg, 17%, 47%, 0.761);
   border-radius: 10px;
+}
+@media (min-width: 600px) {
+  .info-container {
+    width: 450px;
+  }
 }
 .info-container .tries {
   text-align: center;
